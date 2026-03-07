@@ -1,0 +1,156 @@
+{
+  "Leave": {
+    "name": "Leave Application",
+    "description": "Professional leave request letter",
+    "fields": [
+      {
+        "name": "fullName",
+        "label": "Your Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "employeeId",
+        "label": "Employee ID (Optional)",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "department",
+        "label": "Department",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "leaveDays",
+        "label": "Number of Days",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "reason",
+        "label": "Reason for Leave",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "name": "startDate",
+        "label": "Start Date",
+        "type": "date",
+        "required": true
+      }
+    ],
+    "prompt": "Create a professional leave application letter with the following details: Employee Name: {fullName}, Department: {department}, Number of Days: {leaveDays}, Reason: {reason}, Start Date: {startDate}. Make it formal and professional suitable for an office setting."
+  },
+  "ATM": {
+    "name": "ATM Grab Application",
+    "description": "Application for ATM location grab",
+    "fields": [
+      {
+        "name": "fullName",
+        "label": "Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "bankName",
+        "label": "Bank Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "accountNumber",
+        "label": "Account Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "location",
+        "label": "Proposed ATM Location",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "businessDetails",
+        "label": "Business Details",
+        "type": "textarea",
+        "required": true
+      }
+    ],
+    "prompt": "Write a professional ATM grab application for: Name: {fullName}, Bank: {bankName}, Account: {accountNumber}, Location: {location}, Details: {businessDetails}. Make it formal and suitable for bank submission."
+  },
+  "BankDraft": {
+    "name": "Bank Draft Application",
+    "description": "Request for bank draft issuance",
+    "fields": [
+      {
+        "name": "fullName",
+        "label": "Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "bankName",
+        "label": "Bank Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "amount",
+        "label": "Amount Required",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "payeeName",
+        "label": "Payee Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "purpose",
+        "label": "Purpose",
+        "type": "textarea",
+        "required": true
+      }
+    ],
+    "prompt": "Write a formal bank draft application requesting: Amount: {amount}, Payee: {payeeName}, From: {fullName}, Bank: {bankName}, Purpose: {purpose}. Make it professional and suitable for bank processing."
+  },
+  "Complaint": {
+    "name": "Official Complaint Letter",
+    "description": "Formal complaint letter template",
+    "fields": [
+      {
+        "name": "fullName",
+        "label": "Your Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "recipientName",
+        "label": "Recipient Name/Title",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "department",
+        "label": "Department/Organization",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "complaintDetails",
+        "label": "Complaint Details",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "name": "requestedAction",
+        "label": "Requested Action",
+        "type": "textarea",
+        "required": true
+      }
+    ],
+    "prompt": "Write a formal complaint letter from {fullName} to {recipientName} at {department}. Complaint: {complaintDetails}. Requested Action: {requestedAction}. Make it professional, detailed, and suitable for official submission."
+  }
+}
