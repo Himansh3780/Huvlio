@@ -10,45 +10,14 @@ export const PREMIUM_AMOUNT_PAISE = 2900; // ₹29 in paise (29 * 100)
 
 export async function createSubscriptionLink(userId: string, email: string, phoneNumber?: string) {
   try {
-    const subscriptionPlan = await razorpay.plans.create({
-      period: PREMIUM_PLAN_INTERVAL,
-      interval: 1,
-      amount: PREMIUM_AMOUNT_PAISE,
-      currency: "INR",
-      description: "Unlimited Application Generation",
-    });
-
-    const subscription = await razorpay.subscriptions.create({
-      plan_id: subscriptionPlan.id,
-      customer_notify: 1,
-      quantity: 1,
-      total_count: 0, // never expires
-      addons: [
-        {
-          item: {
-            name: "AppGen Premium",
-            description: "Unlimited applications per month",
-            amount: PREMIUM_AMOUNT_PAISE,
-            currency: "INR",
-          },
-        },
-      ],
-      notes: {
-        userId,
-        email,
-      },
-    });
-
-    // Create payment link for subscription
+    // Create payment link for premium upgrade
     const paymentLink = await razorpay.paymentLink.create({
-      upi_link: true,
       amount: PREMIUM_AMOUNT_PAISE,
       currency: "INR",
-      accept_partial: true,
-      first_min_partial_amount: 2900, // Minimum ₹29
-      expires_by: Math.floor(Date.now() / 1000) + 86400, // 24 hours
-      reference_id: `subscription_${userId}`,
-      description: "Premium Subscription - Unlimited Applications",
+      accept_partial: false,
+      expire_by: Math.floor(Date.now() / 1000) + 86400, // 24 hours
+      reference_id: `premium_${userId}_${Date.now()}`,
+      description: "AI App Generator Premium - Monthly Subscription",
       customer: {
         name: email.split("@")[0],
         email: email,
@@ -61,7 +30,7 @@ export async function createSubscriptionLink(userId: string, email: string, phon
       reminder_enable: true,
       notes: {
         userId,
-        type: "subscription",
+        type: "premium_upgrade",
       },
       callback_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/razorpay/callback`,
       callback_method: "get",

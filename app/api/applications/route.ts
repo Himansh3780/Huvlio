@@ -75,10 +75,10 @@ export async function POST(req: NextRequest) {
     });
 
     // Update generation count
-    if (subscription.id) {
+    if (user.subscription) {
       await prisma.subscription.update({
-        where: { id: subscription.id },
-        data: { generationsUsed: subscription.generationsUsed + 1 },
+        where: { id: user.subscription.id },
+        data: { generationsUsed: user.subscription.generationsUsed + 1 },
       });
     }
 
@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 

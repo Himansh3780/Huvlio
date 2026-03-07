@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import { Navbar } from "@/components/Navbar";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "AI Application Generator",
@@ -18,11 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SessionProvider>
+        <Providers>
           <Navbar />
           {children}
-          <ToastContainer position="bottom-right" />
-        </SessionProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { razorpay, verifyPaymentSignature } from "@/lib/stripe";
+import { razorpay } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
 
         if (payment.status === "authorized") {
           // Capture the payment
-          const captured = await razorpay.payments.capture(paymentId, payment.amount);
+          await razorpay.payments.capture(paymentId, payment.amount, "INR");
 
           // Update subscription in database
           await prisma.subscription.upsert({

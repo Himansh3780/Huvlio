@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { Trash2, Download, Eye } from 'lucide-react';
 import jsPDF from 'jspdf';
@@ -15,7 +14,6 @@ interface Application {
 }
 
 export function ApplicationsList() {
-  const { data: session } = useSession();
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);

@@ -1,13 +1,10 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Github } from 'lucide-react';
 
 export default function SignIn() {
-  const router = useRouter();
-
   const handleGitHubSignIn = async () => {
     await signIn('github', { redirect: true, callbackUrl: '/dashboard' });
   };

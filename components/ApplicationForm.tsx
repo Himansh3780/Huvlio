@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { Loader, Download } from 'lucide-react';
@@ -19,7 +18,6 @@ interface FormData {
 }
 
 export function ApplicationForm() {
-  const { data: session } = useSession();
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
   const [loading, setLoading] = useState(false);
   const [generated, setGenerated] = useState<any>(null);
