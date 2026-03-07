@@ -1,79 +1,92 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Link from 'next/link';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Home() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if user is logged in (will implement with Supabase)
-    setLoading(false);
-  }, []);
-
   return (
-    <div style={{ minHeight: '100vh', padding: '20px' }}>
-      <header style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <h1>🚀 Huvlio AI Document Writer</h1>
-        <p>Generate professional documents in seconds</p>
-      </header>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Navbar />
 
-      <main style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        {loading ? (
-          <div style={{ textAlign: 'center' }}>
-            <p>Loading...</p>
-          </div>
-        ) : user ? (
-          <div>
-            <p>Welcome, {user.email}!</p>
-            <button onClick={() => setUser(null)}>Logout</button>
-          </div>
-        ) : (
-          <div style={{ textAlign: 'center' }}>
-            <h2>Get Started</h2>
-            <p>Create professional documents with AI in just seconds</p>
-            
-            <div style={{ marginTop: '30px', display: 'flex', gap: '20px', justifyContent: 'center' }}>
-              <a href="/auth/login" style={{ 
-                padding: '12px 30px', 
-                backgroundColor: '#007bff', 
-                color: 'white', 
-                textDecoration: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}>
-                Login
-              </a>
-              <a href="/auth/signup" style={{ 
-                padding: '12px 30px', 
-                backgroundColor: '#28a745', 
-                color: 'white', 
-                textDecoration: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}>
-                Sign Up
-              </a>
-            </div>
-          </div>
-        )}
+      <main style={{ flex: 1 }}>
+        {/* Hero Section */}
+        <section style={{
+          padding: '6rem 2rem',
+          textAlign: 'center',
+          backgroundColor: '#fff',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <h1 style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '1.5rem', color: '#111' }}>
+            Generate Professional <span style={{ color: '#0070f3' }}>Official Documents</span> in Seconds
+          </h1>
+          <p style={{ fontSize: '1.4rem', color: '#666', marginBottom: '3rem', maxWidth: '800px', margin: '0 auto 3rem auto' }}>
+            The AI-powered hub for programmatic SEO and official application generation.
+            Download high-quality PDFs instantly.
+          </p>
 
-        <div style={{ marginTop: '60px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
-          {['Leave', 'ATM Grab', 'Bank Draft', 'Complaint'].map((doc) => (
-            <div key={doc} style={{ 
-              padding: '20px', 
-              border: '1px solid #ddd', 
+          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+            <Link href="/templates" style={{
+              padding: '1.2rem 2.8rem',
+              backgroundColor: '#0070f3',
+              color: 'white',
+              textDecoration: 'none',
               borderRadius: '8px',
-              textAlign: 'center'
+              fontSize: '1.2rem',
+              fontWeight: 600,
+              boxShadow: '0 4px 14px 0 rgba(0,118,255,0.39)'
             }}>
-              <h3>{doc}</h3>
-              <p>Generate {doc} documents</p>
+              Browse Templates
+            </Link>
+            <Link href="/auth/signup" style={{
+              padding: '1.2rem 2.8rem',
+              backgroundColor: '#fff',
+              color: '#0070f3',
+              textDecoration: 'none',
+              borderRadius: '8px',
+              border: '2px solid #0070f3',
+              fontSize: '1.2rem',
+              fontWeight: 600
+            }}>
+              Get Started Free
+            </Link>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section style={{ padding: '5rem 2rem', backgroundColor: '#fafafa' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <h2 style={{ textAlign: 'center', marginBottom: '4rem', fontSize: '2.5rem' }}>Popular Documents</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+              {[
+                { name: 'Leave Application', id: 'Leave', desc: 'Request official time off' },
+                { name: 'ATM Location', id: 'ATM', desc: 'Submit ATM placement requests' },
+                { name: 'Bank Draft', id: 'BankDraft', desc: 'Official draft issuance request' },
+                { name: 'Complaint Letter', id: 'Complaint', desc: 'File formal complaints easily' }
+              ].map((doc) => (
+                <Link key={doc.id} href={`/templates/${doc.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div style={{
+                    padding: '2rem',
+                    border: '1px solid #eee',
+                    borderRadius: '12px',
+                    backgroundColor: '#fff',
+                    textAlign: 'center',
+                    transition: 'transform 0.2s',
+                    cursor: 'pointer'
+                  }}
+                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}>
+                    <h3 style={{ marginBottom: '1rem' }}>{doc.name}</h3>
+                    <p style={{ fontSize: '0.9rem', color: '#666' }}>{doc.desc}</p>
+                  </div>
+                </Link>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
       </main>
 
-      <footer style={{ textAlign: 'center', marginTop: '60px', color: '#666' }}>
-        <p>&copy; 2026 Huvlio. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
